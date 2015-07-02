@@ -1,0 +1,212 @@
+<html>
+<head>
+	<title>Kevin, A Web Developer From Taiwan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="author" content="Kevin">
+  <meta property="og:title" content="Kevin, A Web Developer From Taiwan">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://cgmlife.net/">
+  <link rel="stylesheet" type="text/css" href="./normalize.css">
+  <style type="text/css">
+    *{
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+          box-sizing: border-box;
+    }
+    html{
+      font-size: 16px;
+    }
+    body{
+      font-size: 62.5%; /* 10px / 1em  */
+      background-color: #6ec2e9;
+      background-size: cover;
+      color: #ffffff;
+    }
+    #main{
+      width: 70%;
+      height: 40%;
+      margin: 15% auto 0 auto;
+      border: 0.1em solid;
+      padding-top: 0;
+    }
+    .content h2{
+      text-align: center;
+      font-size: 6em;
+      font-weight: bolder;
+    }
+    .content span{
+      font-size: 0.5em; /* 30px */
+      color: #F0F0F0;
+      font-weight: normal;
+    }
+    #links {
+      width: 70%;
+      height: 44%;
+      margin: 1% auto 0 auto;
+      font-size: 2em;
+      font-weight: bold;
+      padding: 0;
+    }
+    #links ul{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    #links li{
+      width: inherit;
+      height: inherit;
+    }
+    #links li a{
+      text-align: center;
+      float: left;
+      display: block; 
+      width: 20%;
+      height: 100%;
+      margin-left: 10%;
+      padding-top: 8%;
+      background: white;
+      color: #446f79;
+      word-break: break-all;
+      text-decoration: none;
+    }
+    #links li a:hover{
+      background: #2780f0;
+      color: #ffffff;
+    }
+    .modal{
+      display: none;
+      width: 60%;
+      height: 100%;
+      background: #ffffff;
+      border: 2px solid #ffffff;
+      border-radius: 10px;
+      color: #446f79;
+      z-index: 1;
+      position: fixed;
+      top: 0;
+      left: 20%;
+      opacity: 0.9;
+      overflow: scroll;
+    }
+    .modal-content{
+      width: 80%;
+      margin: 0 auto;
+    }
+    .modal-content h2{
+      text-align: center;
+      font-size: 4em;
+    }
+    .modal-content p{
+      font-size: 3.5em;
+    }
+    .modal-content a{
+      color: #446f79;
+    }
+    .close{
+      width: 100%;
+      height: auto;
+      display: block;
+      font-size: 3em;
+    }
+    .close a{
+      float: right;
+      text-decoration: none;
+      display: block;
+      width: auto;
+      height: auto;
+      margin-right: 10%;
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div class="content">
+      <h2>Kevin <span>A Web Developer From Taiwan</span></h2>
+    </div>
+  </div>
+
+  <div id="links">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skill">Skills</a></li>
+      <li><a href="#contact">Contact Me</a></li>
+    </ul>
+  </div>
+
+  <div id="about" class="modal">
+    <div class="close"><a href="">X</a></div>
+    <div class="modal-content">
+      <h2>About Me</h2>
+      <p>I'm a student studying at National Taichung University of Science and Technology now.</p>
+
+      <p>I love to transform my idea to a real project, it's fun to me. Although I'm a student, I have many experiences on developing self-using projects.</p>
+
+      <p>I always keep learning because I believe that learning is the only way to make yourself more better and better.</p>
+    </div>
+  </div>
+
+  <div id="skill" class="modal">
+    <div class="close"><a href="">X</a></div>
+    <div class="modal-content">
+      <h2>Skills</h2>
+      <p>I'm familiar with :</p>
+      <ul>
+        <li><p>Ruby on Rails</p></li>
+        <li><p>Golang</p></li>
+        <li><p>Web Performance Tuning</p></li>
+        <li><p>Search Engine Optimization</p></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="contact" class="modal">
+    <div class="close"><a href="">X</a></div>
+    <div class="modal-content">
+      <h2>Contact Me</h2>
+      <p>You can find me thourgh :</p>
+      <ul>
+        <li><p><a href="https://github.com/WithGJR" target="_blank">Github</a></p></li>
+        <li><p><a href="http://blog.cgmlife.net/" target="_blank">Blog</a></p></li>
+        <li><p><a href="https://tw.linkedin.com/pub/chun-huang-yu/92/b2b/9b6
+" target="_blank">Linkedin</a></p></li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    function addEvent(el, type, handler) {
+      if (el.attachEvent) el.attachEvent('on'+type, handler); else el.addEventListener(type, handler);
+    }
+    function triggerEvent(el, type){
+      if (document.createEvent) {
+        // modern browsers, IE9+
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent(type, true, true);
+        el.dispatchEvent(e);
+      } else {
+        // IE 8
+        var e = document.createEventObject();
+        e.eventType = type;
+        el.fireEvent('on'+e.eventType, e);
+      }
+    }
+
+    (function() {
+      addEvent(window, "hashchange", function() {
+        var anchor = window.location.hash.slice(1);
+        document.getElementById(anchor).style.display = "initial";
+
+        var modals = document.getElementsByClassName('modal');
+        for (var i = 0; i <= modals.length - 1; i++) {
+          if (modals[i].id != anchor) {
+            modals[i].style.display = "none";
+          };
+        };
+      });
+
+      triggerEvent(window, "hashchange");
+    })();
+  </script>
+</body>
+</html>
