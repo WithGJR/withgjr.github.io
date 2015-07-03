@@ -73,6 +73,8 @@
     #links li a:hover{
       background: #2780f0;
       color: #ffffff;
+      -webkit-transition: background 0.8s; 
+      transition: background 0.8s;
     }
     .modal-background{
       width: 100%;
@@ -80,7 +82,7 @@
       background: #000000;
       display: none;
       z-index: 1;
-      opacity: 0.9;
+      opacity: 0; /* 0.9 */
       position: fixed;
       top: 0;
       left: 0;
@@ -257,6 +259,12 @@
         };
       };
     }
+    function fadeIn(el, duration, display) {
+      var s = el.style, step = 25/(duration || 300);
+      s.opacity = s.opacity || 0;
+      s.display = display || "block";
+      (function fade() { (s.opacity = parseFloat(s.opacity)+step) > 1 ? s.opacity = 1 : setTimeout(fade, 25); })();
+    }
 
     (function() {
       addEvent(window, "hashchange", function() {
@@ -265,7 +273,8 @@
 
         if (anchor != "") {
           console.log(document.getElementById(anchor).parentNode.style.background);
-          document.getElementById(anchor).parentNode.style.display = "initial";
+          // document.getElementById(anchor).parentNode.style.display = "initial";
+          fadeIn(document.getElementById(anchor).parentNode, 300, "initial");
 
           hideElements(modals, function(element) {
             return element.childNodes[1].id != anchor;
