@@ -171,7 +171,7 @@
     </ul>
   </div>
 
-  <div id="about" class="modal">
+  <section id="about" class="modal">
     <div class="close"><a href="">X</a></div>
     <div class="modal-content">
       <h2>About Me</h2>
@@ -181,9 +181,9 @@
 
       <p>I always keep learning because I believe that learning is the only way to make yourself more better and better.</p>
     </div>
-  </div>
+  </section>
 
-  <div id="skill" class="modal">
+  <section id="skill" class="modal">
     <div class="close"><a href="">X</a></div>
     <div class="modal-content">
       <h2>Skills</h2>
@@ -195,9 +195,9 @@
         <li><p>Search Engine Optimization</p></li>
       </ul>
     </div>
-  </div>
+  </section>
 
-  <div id="contact" class="modal">
+  <section id="contact" class="modal">
     <div class="close"><a href="">X</a></div>
     <div class="modal-content">
       <h2>Contact Me</h2>
@@ -209,7 +209,7 @@
 " target="_blank">Linkedin</a></p></li>
       </ul>
     </div>
-  </div>
+  </section>
 
   <script type="text/javascript">
     function addEvent(el, type, handler) {
@@ -228,17 +228,33 @@
         el.fireEvent('on'+e.eventType, e);
       }
     }
+    function hideElements(elements, condition) {
+      if (condition == null) {
+        condition = function(element) {
+          return true;
+        }
+      };
+
+      for (var i = 0; i <= elements.length - 1; i++) {
+        if (condition(elements[i])) {
+          elements[i].style.display = "none";
+        };
+      };
+    }
 
     (function() {
       addEvent(window, "hashchange", function() {
         var anchor = window.location.hash.slice(1);
-        document.getElementById(anchor).style.display = "initial";
-
         var modals = document.getElementsByClassName('modal');
-        for (var i = 0; i <= modals.length - 1; i++) {
-          if (modals[i].id != anchor) {
-            modals[i].style.display = "none";
-          };
+
+        if (anchor != "") {
+          document.getElementById(anchor).style.display = "initial";
+
+          hideElements(modals, function(element) {
+            return modals[i].id != anchor;
+          });
+        }else{
+          hideElements(modals);
         };
       });
 
